@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock paper scissor game</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <div id="container">
-      <p class="headline">Rock Paper Scissor Game</p>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Game</title>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="visual-elements">
+      <div>
+        <p class="title">ROCK PAPER AND SCISSORS GAME</p>
+      </div>
       <div class="images-container">
-        <img id="rock-img" class="img" src="./img/rock.png" alt="" />
-        <img id="paper-img" class="img" src="./img/paper.png" alt="" />
-        <img id="scissors-img" class="img" src="./img/scissors.png" alt="" />
-      </div>
-
-      <div class="result-container">
-        <div id="round-result" class="round-result-2"></div>
-        <div>
-            <div class="round-result-2" id="round-status"></div>
-        </div>
+        <div class="image rock-img"><img src="./img/rock.png" alt="rock imgae"></div>
+        <div class="image paper-img"><img src="./img/paper.png" alt="paper imgae"></div>
+        <div class="image scissors-img"><img src="./img/scissors.png" alt="scissors imgae"></div>
       </div>
     </div>
+    <div class="later-elements">
+      <div class="hidden-elements hide">
+        <div class="winner">Computer Wins</div>
+      <div class="results-computer">Computer Choose Rock</div>
+      <div class="results-human">You Choose scissors</div>
+      <div class="scores">
+        <div class="computer">Computer : <span class="result-span-computer"></span></div>
+        <div class="human">Human : <span class="result-span-human"></span></div>
+      </div>
+      </div>
+      <button class="start-button">Start</button>
+      <!-- dialog set up -->
 
-
-    <div id="match-summary" hidden>You  <span id="human-score"></span> -  <span id="computer-score"></span> Computer</div>
-        <div>
-
-
-    <div class="btn-container">
-        <button class="btn" id="start-btn">Start</button>
-        <button class="btn" id="restart-btn" hidden>Restart</button>
+      <dialog>
+        <p class="result-dialog">Computer Wins</p>
+        <button class="rst-btn">Restart</button>
+      </dialog>
     </div>
-  </body>
+    
+  </div>
+
+  
+</body>
+
 </html>

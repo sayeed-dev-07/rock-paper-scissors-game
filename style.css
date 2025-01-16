@@ -1,77 +1,102 @@
-body{
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jersey+15&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mochiy+Pop+One&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+:root{
+    --title-font:"Jersey 15", serif;
+    --normal-font:"Roboto", serif;
+    --winner-font:"Merriweather", serif;
+    --backgroung-color: linear-gradient(210deg,#a473ff, #15d1b8);
+    
+    
+}
+
+*{
     margin: 0;
     padding: 0;
-    background-color: royalblue;
-    color: white;
 }
-img{
-    height: 100px;
-    cursor: pointer;
+.title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-family: var(--winner-font);
+    color: #0cf4ca;
+
 }
+.later-elements{
+    font-size: 2rem;
+    font-family: var(--normal-font);
+    
+}
+
 .images-container{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 50px;
-    margin-top: 30px;
+    gap: 4rem;
+    margin: 4rem 0;
 }
-.headline{
-    text-align: center;
-    font-size: 30px;
-    font-family: sans-serif;
-    font-weight: bold;
+.visual-elements{
+
+    width: 100%;
 }
-.result-container{
-    text-align: center;
-}
-#round-result{
-    font-family: sans-serif;
-    text-align: center;
-    font-size: 25px;
-    color: rgb(239, 234, 235);
-    font-weight: bold;
-    margin-top: 20px;
-}
-.btn-container{
-    margin-top: 10vh;
+.main-container{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 40px;
+    flex-direction: column;
+    text-align: center;
+    background: var(--backgroung-color);
+    height: calc(100vh - 6rem);
+    padding: 3rem 0rem;
 }
-.btn{
-    padding: 15px 30px;
-    font-size: medium;
-    font-weight: bold;
+.image > img{
+    max-width: 140px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    
+}
+button{
     background-color: black;
     color: white;
-    border: none;
-    border-radius: 10px;
+    padding: 1rem 4rem;
     cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 10px;
+    margin-top: 2rem;
+    transition: transform 0.2s ease;
 }
-#round-status{
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 20px;
-    line-height: 30px;
-}
-span{
-    color: #ddd6d6;
+button:hover{
+    background-color: white;
+    color: black;
+    box-shadow: 10px 10px 10px rgb(78, 75, 75);
+    transform: scale(1.02);
 }
 
-.round-result-2{
-    font-family: sans-serif;
-    text-align: center;
-    font-size: 25px;
-    color: rgb(239, 234, 235);
-    font-weight: bold;
-    margin-top: 20px;
+.image img:hover{
+    transform: scale(1.2);
 }
-#match-summary{
-    font-family: sans-serif;
-    text-align: center;
-    font-size: 25px;
-    color: rgb(239, 234, 235);
-    font-weight: bold;
-    margin-top: 20px;
+dialog{
+    width: 280px;
+    padding: 4rem 1rem;
+    background-color: #c9d4d9;
+    inset: 0;
+    margin: auto;
+    border: none;
+    border-radius: 10px;
+}
+
+dialog::backdrop{
+    background: rgb(0 ,0 ,0 ,0.3);
+
+}
+dialog p{
+    font-family: var(--winner-font);
+    font-weight: 600;
+}
+.later-elements{
+
+}
+.hide{
+    display: none;
 }
