@@ -1,128 +1,110 @@
-const rockImg = document.querySelector('.rock-img');
-const paperImg = document.querySelector('.paper-img');
-const scissorsImg = document.querySelector('.scissors-img');
-const imageContainer = document.querySelector('.images-container')
-const dialog = document.querySelector('dialog');
-const restartBtn = document.querySelector('.rst-btn');
-const dialogResult = document.querySelector('.result-dialog')
-const startBtn = document.querySelector('.start-button')
-const hiddenitems = document.querySelector('.hidden-elements')
-const winnerSlot = document.querySelector('.winner')
-const computerChoose = document.querySelector('.results-computer')
-const humanChoose = document.querySelector('.results-human')
-const computerResultSpan = document.querySelector('.result-span-computer')
-const humanResultSpan = document.querySelector('.result-span-human');
+const rockBtn = document.querySelector('.rock');
+const paperBtn = document.querySelector('.paper');
+const scissorBtn = document.querySelector('.scissor');
+const startBtn = document.querySelector('.start-btn');
+const whoWin = document.querySelector('.who-wins')
+const choices = document.querySelector('.choices');
+const computerScrView = document.querySelector('.Computer-score') 
+const humanScrView = document.querySelector('.Human-score') 
+
+const summeryContainer = document.querySelector('.summery')
+const buttonContainer = document.querySelector('.buttons-area')
+const space = document.querySelector('.space');
+
+
 let humanScore = 0;
 let computerScore = 0;
-
-
-
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        updateInformation(computerChoice, humanChoice, 'none')
-    } else if ((humanChoice === 'rock' && computerChoice === 'scissors')
-        || (humanChoice === 'paper' && computerChoice === 'rock')
-        || (humanChoice === 'scissors' && computerChoice === 'paper')) {
-            humanScore++;
-            updateInformation(computerChoice, humanChoice, 'human')
-    }else{
-        computerScore++;
-        updateInformation(computerChoice, humanChoice, 'computer')
-    }
-}
-
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-let winner;
-
-function playGame(){
-    if(humanScore === 5){
-        winner = 'human';
-        showDialog();
-        return;
-    }else if(computerScore === 5){
-        winner = 'computer';
-        showDialog();
-        return;
-    }
-    playRound(humanSelection, computerSelection);
-    playGame();
-}
-
-function clearData(){
-    humanScore = 0;
-    computerScore = 0;
-    winnerSlot.textContent = '';
-    humanChoose.textContent = '';
-    computerChoose.textContent = '';
-}
+let gameOn = false;
 
 
 function getComputerChoice() {
-    const choiceArray = ['rock', 'paper', 'scissors'];
+    const choiceArray = ['rock', 'paper', 'scissor'];
     let randNum = Math.floor(Math.random() * 3);
     return choiceArray[randNum];
 }
 
-
-// human input
-
-
-function getHumanChoice() {
-    imageContainer.addEventListener('click', (e) => {
-        
-        if (e.target.classList.contains('rock-img')) {
-            return 'rock'
-        } else if (e.target.classList.contains('paper-img')) {
-            return 'paper'
-        } else if (e.target.classList.contains('scissors-img')) {
-            return 'scissors'
-        }
-    })
-}
-
-
-
-function updateInformation(cmpChoice, hmnChoice, whoWin) {
-    computerChoose.textContent = `Computer Choose ${cmpChoice}`;
-    humanChoose.textContent = `Human Choose ${hmnChoice}`;
-    computerResultSpan.textContent = `${computerScore}`;
-    humanResultSpan.textContent = `${humanScore}`;
-    if (whoWin === 'none') {
-        winnerSlot.textContent = `Draw!`;
-    } else if (whoWin === 'computer') {
-        winnerSlot.textContent = `Computer Wins`;
+buttonContainer.addEventListener('click',(e)=>{
+    if(!gameOn){
+        return;
     }
-    else if (whoWin === 'human') {
-        winnerSlot.textContent = `Human Wins`;
-    }
-
-}
-
-
-
-
-function showDialog() {
-    dialogResult.innerHTML = `${winner} wins`
-    dialog.showModal();
-
-
-}
-
-function closeDialog() {
-    dialog.close();
-}
-
-restartBtn.addEventListener('click',()=>{
-    clearData()
-    playGame()
-})
-
-startBtn.addEventListener('click',()=>{
-    hiddenitems.classList.remove('hide');
-    startBtn.classList.add('hide');
     
-    playGame();
+    let humanChoiceElement;
+    let child = e.target.id
+    if (child === 'rock') {
+        humanChoiceElement = 'rock';
+    }else if(child === 'paper'){
+        humanChoiceElement = 'paper';
+    }else if(child === 'scissor'){
+        humanChoiceElement = 'scissor';
+    }
+
+    let computerChoiceElement = getComputerChoice()
+    playRound(humanChoiceElement, computerChoiceElement)
 })
+
+function playRound(human, computer){
+
+    if(!gameOn){
+        return;
+    }
+    let result;
+    if(human === computer){
+        result = 'Draw!'
+    }else if(
+        (human === 'rock' && computer === 'scissor')||
+        (human === 'paper' && computer === 'rock') ||
+        (human === 'scissor' && computer === 'paper')
+    ){
+        humanScore++;
+        result = 'Human wins'
+    }else{
+        computerScore ++;
+        result = 'Computer wins'
+    }
+
+    updateScore(result, humanScore, computerScore, human, computer);
+    checkWinner();
+}
+
+
+function updateScore(result, humanScore, computerScore, human, computer){
+    
+    whoWin.textContent = `${result}`
+    choices.textContent = `You choose ${human} Computer Choose ${computer}`
+    computerScrView.textContent = `Computer: ${computerScore}`
+    humanScrView.textContent = `Human: ${humanScore}`
+    const p1 = document.createElement('p');
+    
+    p1.innerText = `${result}`
+    summeryContainer.appendChild(p1)
+}
+
+
+function playGame(){
+    space.classList.remove('hidden')
+    summeryContainer.innerHTML = ``
+    humanScore = 0;
+    computerScore = 0;
+    gameOn = true;
+    whoWin.textContent = 'Let’s play!';
+    choices.textContent = '';
+    computerScrView.textContent = 'Computer: 0';
+    humanScrView.textContent = 'Human: 0';
+    startBtn.textContent = 'Playing...';
+}
+
+function checkWinner(){
+    if(computerScore === 5){
+        alert(`Winner is Computer`)
+        startBtn.textContent = `Restart`
+        gameOn = false;
+    }else if(humanScore === 5){
+        alert(`Winner is Human`)
+        startBtn.textContent = `Restart`
+        gameOn = false;
+}
+}
+
+startBtn.addEventListener('click', playGame)
+
+// gethumanChoice()

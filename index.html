@@ -1,48 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors Game</title>
   <script src="script.js" defer></script>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <div class="main-container">
-    <div class="visual-elements">
-      <div>
-        <p class="title">ROCK PAPER AND SCISSORS GAME</p>
-      </div>
-      <div class="images-container">
-        <div class="image rock-img"><img src="./img/rock.png" alt="rock imgae"></div>
-        <div class="image paper-img"><img src="./img/paper.png" alt="paper imgae"></div>
-        <div class="image scissors-img"><img src="./img/scissors.png" alt="scissors imgae"></div>
-      </div>
-    </div>
-    <div class="later-elements">
-      <div class="hidden-elements hide">
-        <div class="winner">Computer Wins</div>
-      <div class="results-computer">Computer Choose Rock</div>
-      <div class="results-human">You Choose scissors</div>
-      <div class="scores">
-        <div class="computer">Computer : <span class="result-span-computer"></span></div>
-        <div class="human">Human : <span class="result-span-human"></span></div>
-      </div>
-      </div>
-      <button class="start-button">Start</button>
-      <!-- dialog set up -->
-
-      <dialog>
-        <p class="result-dialog">Computer Wins</p>
-        <button class="rst-btn">Restart</button>
-      </dialog>
-    </div>
-    
+    <div class="title"></div>
+  <div class="buttons-area">
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissor">Scissor</button>
   </div>
 
-  
-</body>
+  <button class="start-btn">Start</button>
 
+  <div class="log-area">
+    <p class="who-wins"></p>
+    <p class="choices"></p>
+    <div class="score">
+      <div class="Computer-score">
+        
+      </div>
+      <div class="Human-score">
+        
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <p class="space hidden">Game Log:</p>
+    <div class="summery"></div>
+  
+</div>
+  </div>
+</body>
 </html>
