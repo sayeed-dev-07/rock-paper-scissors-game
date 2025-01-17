@@ -91,15 +91,18 @@ function playGame(){
     computerScrView.textContent = 'Computer: 0';
     humanScrView.textContent = 'Human: 0';
     startBtn.textContent = 'Playing...';
+    startBtn.disabled = true;
 }
 
 function checkWinner(){
     if(computerScore === 5){
         alert(`Winner is Computer`)
+        startBtn.disabled = false;
         startBtn.textContent = `Restart`
         gameOn = false;
     }else if(humanScore === 5){
         alert(`Winner is Human`)
+        startBtn.disabled = false;
         startBtn.textContent = `Restart`
         gameOn = false;
 }
